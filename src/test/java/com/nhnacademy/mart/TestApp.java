@@ -22,7 +22,6 @@ public class TestApp {
         foodStand.add(new Food("apple", 200));
         foodStand.add(new Food("apple", 200));
         foodStand.add(new Food("apple", 200));
-        foodStand.add(new Food("apple", 200));
 
         foodStand.delete(new BuyList.Item("apple", 3));
 
