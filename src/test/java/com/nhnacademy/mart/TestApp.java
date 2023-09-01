@@ -10,18 +10,36 @@ import org.junit.jupiter.api.Test;
 public class TestApp {
     private static BuyList inputBuyListFromShell() {
         // TODO Scanner 입력을 받아 buyList 만들기
+        // TODO Scanner 입력을 받아 buyList 만들기
 
+        String input = "apple 2 banana 3";
+
+        String[] inputs = input.split(" ");
         BuyList buyList = new BuyList();
-        buyList.add(new BuyList.Item("apple",4));
+        for(int i=0 ;i<inputs.length; i+=2){
+            buyList.add(new BuyList.Item(inputs[i], Integer.parseInt(inputs[i+1])));
+        }
+
         return buyList;
+
     }
+
+    @Test
+    @Description("쉘입력 받는 테스트")
+    public void testInputShell(){
+        BuyList buyList = new BuyList();
+        buyList.add(new BuyList.Item("apple", 2));
+        buyList.add(new BuyList.Item("banana", 3));
+        Assertions.assertEquals(inputBuyListFromShell().getItems().get(1).getName(), buyList.getItems().get(1).getName());
+    }
+
     @Test
     @Description("input func 확인")
     public void testInput(){
         BuyList buyList = new BuyList();
         buyList.add(new BuyList.Item("사과", 200));
 
-        Assertions.assertEquals(buyList.getItems().get(0), "사과");
+        Assertions.assertEquals(buyList.getItems().get(0).getName(), "사과");
     }
 
     @Test
@@ -69,7 +87,9 @@ public class TestApp {
         NhnMart mart = new NhnMart();
         mart.prepareMart();
 
-        BuyList buyList = inputBuyListFromShell();
+        BuyList buyList = new BuyList();
+        buyList.add(new BuyList.Item("apple",4));
+
 
         // TODO 본인이름 영어로 변수명 작성!
         // 본인이름을 각자 맞게 영어로 변경
@@ -90,6 +110,8 @@ public class TestApp {
             seonghyun.pickFoods(foodStand);
         });
     }
+
+
 
 
 }
