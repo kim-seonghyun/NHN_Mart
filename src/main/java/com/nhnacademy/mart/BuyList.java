@@ -17,6 +17,14 @@ public class BuyList {
 
 
     public static class Item {
+        public String getName() {
+            return name;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+
         private final String name;
         private final int amount;
 
