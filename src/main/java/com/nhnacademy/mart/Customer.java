@@ -25,11 +25,18 @@ public class Customer {
     // basket에 담아야 하나?
     // buyList , foodstand의 재고를 비교하기
     public void pickFoods(FoodStand foodStand) {
-        ArrayList<BuyList.Item> buyList = new ArrayList<>();
 
-        for(int i=0 ; i< buyList.size(); i++){
-            buyList.indexOf(i);
+        for(BuyList.Item item: buyList.getItems()){
+            Food deletedFood = foodStand.delete(item);
+            for(int i=0; i<item.getAmount(); i++){
+                this.basket.add(deletedFood);
+            }
         }
+        //이제 buyList는 구매할 수 있는 food만 있다.
+    }
+
+    public void payTox(Counter counter) {
+
     }
 
     // TODO payTox 메서드 구현

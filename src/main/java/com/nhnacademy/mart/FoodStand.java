@@ -14,13 +14,13 @@ public class FoodStand {
     }
 
     // TODO 장바구니에 담은 Food 삭제 구현
-    public void delete(BuyList.Item item) throws IllegalArgumentException {
-
+    public Food delete(BuyList.Item item) throws IllegalArgumentException {
         Food food = findFood(item);
+        Food result = null;
         if (food == null) {
             throw new IllegalArgumentException("판매 하지 않는 음식입니다.");
         } else {
-
+            result = food;
             for (int i = 0; i < item.getAmount(); i++) {
 
                 int index = foods.indexOf(food);
@@ -31,7 +31,7 @@ public class FoodStand {
                 food = findFood(item);
             }
         }
-
+        return result;
     }
 
     private static Food findFood(BuyList.Item item) {

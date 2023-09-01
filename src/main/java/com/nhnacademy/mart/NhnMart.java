@@ -31,4 +31,8 @@ public class NhnMart {
     public FoodStand getFoodStand() {
         return this.foodStand;
     }
+
+    public Counter getCounter() {
+        return new Counter();
+    }
 }

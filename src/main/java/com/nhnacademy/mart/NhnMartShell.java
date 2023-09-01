@@ -23,7 +23,7 @@ public class NhnMartShell {
         seonghyun.pickFoods(mart.getFoodStand());
 
         // 카운터에서 계산한다.
-        //seonghyun.payTox(mart.getCounter());
+        seonghyun.payTox(mart.getCounter());
     }
 
     private static BuyList inputBuyListFromShell() {
