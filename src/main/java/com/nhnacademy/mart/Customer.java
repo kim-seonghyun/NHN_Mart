@@ -1,7 +1,5 @@
 package com.nhnacademy.mart;
 
-import java.util.ArrayList;
-
 public class Customer {
 
     // 고객 구매 목록
@@ -9,6 +7,8 @@ public class Customer {
 
     // 고객 장바구니
     private Basket basket;
+
+    private int cash = 20000;
 
     public Customer(BuyList buyList) {
         this.buyList = buyList;
@@ -20,26 +20,25 @@ public class Customer {
     }
 
 
-
     // TODO pickFoods 메서드 구현
     // basket에 담아야 하나?
     // buyList , foodstand의 재고를 비교하기
     public void pickFoods(FoodStand foodStand) {
 
-        for(BuyList.Item item: buyList.getItems()){
+        for (BuyList.Item item : buyList.getItems()) {
             Food deletedFood = foodStand.delete(item);
-            for(int i=0; i<item.getAmount(); i++){
+            for (int i = 0; i < item.getAmount(); i++) {
                 this.basket.add(deletedFood);
             }
         }
         //이제 buyList는 구매할 수 있는 food만 있다.
     }
 
-    public void payTox(Counter counter) {
-
-    }
-
     // TODO payTox 메서드 구현
-
+    public int payTox(Counter counter) {
+        int cost = counter.pay(this.basket);
+        cash -= cost;
+        return cash;
+    }
 
 }

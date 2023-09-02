@@ -16,8 +16,8 @@ public class TestApp {
 
         String[] inputs = input.split(" ");
         BuyList buyList = new BuyList();
-        for(int i=0 ;i<inputs.length; i+=2){
-            buyList.add(new BuyList.Item(inputs[i], Integer.parseInt(inputs[i+1])));
+        for (int i = 0; i < inputs.length; i += 2) {
+            buyList.add(new BuyList.Item(inputs[i], Integer.parseInt(inputs[i + 1])));
         }
 
         return buyList;
@@ -26,7 +26,7 @@ public class TestApp {
 
     @Test
     @Description("쉘입력 받는 테스트")
-    public void testInputShell(){
+    public void testInputShell() {
         BuyList buyList = new BuyList();
         buyList.add(new BuyList.Item("apple", 2));
         buyList.add(new BuyList.Item("banana", 3));
@@ -35,7 +35,7 @@ public class TestApp {
 
     @Test
     @Description("input func 확인")
-    public void testInput(){
+    public void testInput() {
         BuyList buyList = new BuyList();
         buyList.add(new BuyList.Item("사과", 200));
 
@@ -44,7 +44,7 @@ public class TestApp {
 
     @Test
     @Description("FoodStand delete 테스트")
-    public void testDelete(){
+    public void testDelete() {
         FoodStand foodStand = new FoodStand();
         foodStand.add(new Food("apple", 200));
         foodStand.add(new Food("apple", 200));
@@ -59,7 +59,7 @@ public class TestApp {
 
     @Test
     @Description("FoodStand 더 많은양 주문 테스트")
-    public void testDeleteOverflow(){
+    public void testDeleteOverflow() {
         FoodStand foodStand = new FoodStand();
         foodStand.add(new Food("apple", 200));
         foodStand.add(new Food("apple", 200));
@@ -73,22 +73,23 @@ public class TestApp {
 
     @Test
     @Description("FoodStand 없는 음식 주문 테스트")
-    public void testDeleteUnderflow(){
+    public void testDeleteUnderflow() {
         FoodStand foodStand = new FoodStand();
 
-        Assertions.assertThrows(IllegalArgumentException.class , ()->{
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             foodStand.delete(new BuyList.Item("apple", 1));
         });
     }
 
+
     @Test
     @Description("pickFoods Overflow 테스트")
-    public void testPickFoods(){
+    public void testPickFoods() {
         NhnMart mart = new NhnMart();
         mart.prepareMart();
 
         BuyList buyList = new BuyList();
-        buyList.add(new BuyList.Item("apple",4));
+        buyList.add(new BuyList.Item("apple", 4));
 
 
         // TODO 본인이름 영어로 변수명 작성!
@@ -106,12 +107,40 @@ public class TestApp {
         foodStand.add(new Food("apple", 200));
         foodStand.add(new Food("apple", 200));
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()-> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             seonghyun.pickFoods(foodStand);
         });
     }
 
+    @Test
+    @Description("payTox 메서드 구현")
+    public void testPayTox(){
+        NhnMart mart = new NhnMart();
+        mart.prepareMart();
+
+        BuyList buyList = new BuyList();
+        buyList.add(new BuyList.Item("apple", 3));
 
 
+        // TODO 본인이름 영어로 변수명 작성!
+        // 본인이름을 각자 맞게 영어로 변경
+        // 홍길동 학생
+        // -> hongGilDong or gilDong
+        Customer seonghyun = new Customer(buyList);
 
+        // 장바구니를 챙긴다.
+        seonghyun.bring(mart.provideBasket());
+
+
+        FoodStand foodStand = new FoodStand();
+        foodStand.add(new Food("apple", 200));
+        foodStand.add(new Food("apple", 200));
+        foodStand.add(new Food("apple", 200));
+
+        seonghyun.pickFoods(foodStand);
+
+        int result = seonghyun.payTox(mart.getCounter());
+
+        Assertions.assertEquals(result, 20000-600);
+    }
 }

@@ -19,3 +19,5 @@ _
 .src/test/java/com/nhnacademy/mart/TestApp.java,0/7/07038f77067a5edff0cc6b9c80b61b571ceb5064
 c
 3src/main/java/com/nhnacademy/mart/NhnMartShell.java,e/1/e18dfd24854668fbdcbd8c593414fd72ed1b1f12
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

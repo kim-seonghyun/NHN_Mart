@@ -23,6 +23,9 @@ public class NhnMartShell {
         seonghyun.pickFoods(mart.getFoodStand());
 
         // 카운터에서 계산한다.
+        // basket 채우면 될듯
+        // basket 안에 Food 객체 있음.
+        // basket 순회 하면서 가격 리턴.
         seonghyun.payTox(mart.getCounter());
     }
 
@@ -33,8 +36,8 @@ public class NhnMartShell {
 
         String[] inputs = input.split(" ");
         BuyList buyList = new BuyList();
-        for(int i=0 ;i<inputs.length; i+=2){
-            buyList.add(new BuyList.Item(inputs[i], Integer.parseInt(inputs[i+1])));
+        for (int i = 0; i < inputs.length; i += 2) {
+            buyList.add(new BuyList.Item(inputs[i], Integer.parseInt(inputs[i + 1])));
         }
 
         return buyList;
