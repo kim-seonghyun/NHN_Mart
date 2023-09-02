@@ -1,6 +1,10 @@
 package com.nhnacademy.mart;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Customer {
+    private static final Logger logger = LoggerFactory.getLogger(Customer.class);
 
     // 고객 구매 목록
     private final BuyList buyList;
@@ -38,6 +42,8 @@ public class Customer {
     public int payTox(Counter counter) {
         int cost = counter.pay(this.basket);
         cash -= cost;
+        logger.info("총 가격은 " + cost + "원 입니다.");
+        logger.info("고객님 결제 후 잔액 : " + cash);
         return cash;
     }
 

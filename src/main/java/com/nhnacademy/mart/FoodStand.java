@@ -3,8 +3,12 @@ package com.nhnacademy.mart;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FoodStand {
+    private static final Logger logger = LoggerFactory.getLogger(FoodStand.class);
+
 
     private static final ArrayList<Food> foods = new ArrayList<>();
 
@@ -18,6 +22,7 @@ public class FoodStand {
         Food food = findFood(item);
         Food result = null;
         if (food == null) {
+            logger.warn("판매 하지 않는 음식입니다.");
             throw new IllegalArgumentException("판매 하지 않는 음식입니다.");
         } else {
             result = food;
@@ -25,6 +30,7 @@ public class FoodStand {
 
                 int index = foods.indexOf(food);
                 if (index == -1) {
+                    logger.warn("판매하는 음식보다 많은 양을 주문하였습니다.");
                     throw new IllegalArgumentException("판매하는 음식보다 많은 양을 주문하였습니다.");
                 }
                 foods.remove(index);

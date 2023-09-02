@@ -1,9 +1,7 @@
 package com.nhnacademy.mart;
 
 
-import java.util.Scanner;
 import jdk.jfr.Description;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -114,7 +112,7 @@ public class TestApp {
 
     @Test
     @Description("payTox 메서드 구현")
-    public void testPayTox(){
+    public void testPayTox() {
         NhnMart mart = new NhnMart();
         mart.prepareMart();
 
@@ -141,6 +139,6 @@ public class TestApp {
 
         int result = seonghyun.payTox(mart.getCounter());
 
-        Assertions.assertEquals(result, 20000-600);
+        Assertions.assertEquals(result, 20000 - 600);
     }
 }
