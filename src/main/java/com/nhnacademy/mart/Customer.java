@@ -1,10 +1,16 @@
 package com.nhnacademy.mart;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Customer {
-    private static final Logger logger = LoggerFactory.getLogger(Customer.class);
+    private static final Logger logger = Logger.getLogger("Customer");
+
+    public static Logger getLogger(){
+        logger.setLevel(Level.ALL);
+        return logger;
+    }
+
 
     // 고객 구매 목록
     private final BuyList buyList;
